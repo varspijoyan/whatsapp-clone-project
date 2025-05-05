@@ -20,22 +20,21 @@ export default function Camera() {
   };
   return (
     <SafeAreaView style={styles.container}>
-      <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
-        <View style={styles.closeCamera}>
-          <Text
-            style={{ color: "white", fontSize: 20 }}
-            onPress={() => router.back()}
-          >
-            X
-          </Text>
-        </View>
-        <TouchableOpacity style={styles.cameraFlip} onPress={flipCamera}>
-          <FontAwesome name="camera" size={20} color={"white"} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-            <View style={styles.circle}></View>
-        </TouchableOpacity>
-      </CameraView>
+      <CameraView style={styles.camera} facing={facing} ref={cameraRef} />
+      <View style={styles.closeCamera}>
+        <Text
+          style={{ color: "white", fontSize: 20 }}
+          onPress={() => router.back()}
+        >
+          X
+        </Text>
+      </View>
+      <TouchableOpacity style={styles.cameraFlip} onPress={flipCamera}>
+        <FontAwesome name="camera" size={20} color={"white"} />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <View style={styles.circle}></View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -62,9 +61,8 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
     borderRadius: 70,
-    position: 'absolute',
-    top: 630,
-    left: 150
-
-  }
+    position: "absolute",
+    top: -120,
+    left: 150,
+  },
 });
