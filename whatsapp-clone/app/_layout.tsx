@@ -33,7 +33,7 @@ export default function RootLayout() {
             headerBackTitle: "Back",
           }}
         />
-      <Stack.Screen name="camera" options={{headerShown: false}}/>
+        <Stack.Screen name="camera" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

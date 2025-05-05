@@ -29,8 +29,8 @@ export default function Highlights() {
           text: "Request",
           onPress: async () => {
             const result = await requestPermission();
-            if(result.granted) {
-              router.push('/camera');
+            if (result.granted) {
+              router.push("/camera");
             }
           },
         },
