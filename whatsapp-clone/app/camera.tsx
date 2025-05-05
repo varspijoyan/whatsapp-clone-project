@@ -13,11 +13,27 @@ import {
 export default function Camera() {
   const [facing, setFacing] = useState<CameraType>("back");
   const router = useRouter();
-  const cameraRef = useRef(null); // to access all the camera functions
+  const cameraRef = useRef<CameraView>(null); // to access all the camera functions
 
   const flipCamera = () => {
     setFacing((prev) => (prev === "back" ? "front" : "back"));
   };
+
+  const handlePictureTaking = async () => {
+    if(cameraRef.current) {
+      const photo = await cameraRef.current.takePictureAsync({
+        quality: 0.5,
+        skipProcessing: true,
+      });
+
+      if(photo?.uri) {
+        router.push({
+          pathname: '/photo',
+          params: {uri: photo?.uri},
+        });
+      }
+    }
+  }
   return (
     <SafeAreaView style={styles.container}>
       <CameraView style={styles.camera} facing={facing} ref={cameraRef} />
@@ -30,7 +46,7 @@ export default function Camera() {
       <TouchableOpacity style={styles.cameraFlip} onPress={flipCamera}>
         <FontAwesome name="camera" size={20} color={"white"} />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handlePictureTaking}>
         <View style={styles.circle}></View>
       </TouchableOpacity>
     </SafeAreaView>

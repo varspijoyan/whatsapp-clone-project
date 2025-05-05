@@ -34,6 +34,7 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen name="camera" options={{ headerShown: false }} />
+        <Stack.Screen name="photo" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
