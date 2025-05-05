@@ -1,9 +1,47 @@
 // highlights screen
 
-import { Image, StyleSheet, Text, View } from "react-native";
+import { useCameraPermissions } from "expo-camera";
+import { useRouter } from "expo-router";
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Highlights() {
+  const router = useRouter();
+  const [permission, requestPermission] = useCameraPermissions();
+
+  const handleCameraPermission = () => {
+    if (!permission) return <ActivityIndicator />;
+
+    if (!permission?.granted) {
+      Alert.alert("Camera Permission", "Allow to access your camera", [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Allow",
+          onPress: () => {
+            requestPermission();
+            router.push("/camera");
+          },
+        },
+      ]);
+    } else {
+      // if we already have a permission (that is when we accessed the camera permission for the first time)
+      // and clicked on plus for the second time 
+      // this should open the camera without asking for a permission
+      router.push("/camera");
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -19,6 +57,12 @@ export default function Highlights() {
             source={require("../../assets/images/user.jpg")}
           />
           <Text style={styles.statusText}>My Status</Text>
+          <TouchableOpacity
+            style={styles.addStatusIcon}
+            onPress={handleCameraPermission}
+          >
+            <Text style={styles.statusIconText}>+</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.latestStatusContent}>
           <Text style={styles.latestText}>Latest</Text>
@@ -58,7 +102,7 @@ const styles = StyleSheet.create({
   statusImg: {
     width: 50,
     height: 50,
-    borderRadius: "50%",
+    borderRadius: 25,
   },
   statusText: {
     fontWeight: "600",
@@ -79,5 +123,21 @@ const styles = StyleSheet.create({
   latestText: {
     fontWeight: "600",
     color: "grey",
+  },
+  addStatusIcon: {
+    position: "absolute",
+    backgroundColor: "#1DB954",
+    width: 24,
+    height: 24,
+    borderRadius: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    top: 30,
+    left: 30,
+  },
+  statusIconText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "600",
   },
 });
