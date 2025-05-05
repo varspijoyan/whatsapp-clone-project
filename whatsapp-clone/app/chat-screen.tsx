@@ -1,5 +1,4 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Pressable, StyleSheet, Text, TextInput, View, SafeAreaView } from "react-native";
 
 export default function ChatScreen() {
   return (

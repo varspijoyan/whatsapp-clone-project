@@ -1,6 +1,5 @@
 import { useRouter } from "expo-router";
-import { FlatList, Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList, Image, Pressable, StyleSheet, Text, View, SafeAreaView } from "react-native";
 
 type ChatType = {
   id: string;

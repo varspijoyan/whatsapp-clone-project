@@ -1,5 +1,4 @@
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { FlatList, Image, StyleSheet, Text, View, SafeAreaView} from "react-native";
 
 type CallType = {
   id: string;
