@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
   closeCamera: {
     position: "absolute",
     left: 20,
-    top: 20,
+    top: 80,
   },
   cameraFlip: {
     position: "absolute",
-    top: 25,
+    top: 85,
     right: 20,
   },
   circle: {
