@@ -3,7 +3,6 @@
 import { useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
 import {
-  ActivityIndicator,
   Alert,
   Image,
   StyleSheet,
@@ -17,26 +16,28 @@ export default function Highlights() {
   const router = useRouter();
   const [permission, requestPermission] = useCameraPermissions();
 
-  const handleCameraPermission = () => {
-    if (!permission) return <ActivityIndicator />;
+  const handleCameraPermission = async () => {
+    if (!permission) return;
 
     if (!permission?.granted) {
-      Alert.alert("Camera Permission", "Allow to access your camera", [
+      Alert.alert("Permission", "Click to request camera permission", [
         {
           text: "Cancel",
           style: "cancel",
         },
         {
-          text: "Allow",
-          onPress: () => {
-            requestPermission();
-            router.push("/camera");
+          text: "Request",
+          onPress: async () => {
+            const result = await requestPermission();
+            if(result.granted) {
+              router.push('/camera');
+            }
           },
         },
       ]);
     } else {
       // if we already have a permission (that is when we accessed the camera permission for the first time)
-      // and clicked on plus for the second time 
+      // and clicked on plus for the second time
       // this should open the camera without asking for a permission
       router.push("/camera");
     }
