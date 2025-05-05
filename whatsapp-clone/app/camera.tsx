@@ -21,14 +21,12 @@ export default function Camera() {
   return (
     <SafeAreaView style={styles.container}>
       <CameraView style={styles.camera} facing={facing} ref={cameraRef} />
-      <View style={styles.closeCamera}>
-        <Text
-          style={{ color: "white", fontSize: 20 }}
-          onPress={() => router.back()}
-        >
-          X
-        </Text>
-      </View>
+      <TouchableOpacity
+        style={styles.closeCamera}
+        onPress={() => router.back()}
+      >
+        <Text style={{ color: "white", fontSize: 20 }}>X</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.cameraFlip} onPress={flipCamera}>
         <FontAwesome name="camera" size={20} color={"white"} />
       </TouchableOpacity>
