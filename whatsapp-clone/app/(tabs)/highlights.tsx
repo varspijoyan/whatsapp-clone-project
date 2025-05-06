@@ -5,12 +5,13 @@ import { useRouter } from "expo-router";
 import {
   Alert,
   Image,
+  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  SafeAreaView
 } from "react-native";
+
 export default function Highlights() {
   const router = useRouter();
   const [permission, requestPermission] = useCameraPermissions();
